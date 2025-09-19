@@ -1,16 +1,39 @@
+// ==UserScript==
+// @name            CS-214 Prettifier
+// @name:fr         CS-214 Enjoliveur
+// @namespace       https://FocusedFaust.github.io
+// @version         2025-09-19
+// @description     Prettifier for the class website, to track your work
+// @description:fr  Enjoliveur pour le cours de CS-214, permet de suivre l'évolution de son travail
+// @description:de  Shit I should've listened to my german teachers
+// @author          FocusedFaust
+// @match           *://cs-214.epfl.ch/*
+// @icon            https://cs-214.epfl.ch/favicon.png
+// @grant           GM_registerMenuCommand
+// ==/UserScript==
+
 const data_key = 'data'
+const selection_range = 'h2,h3,h4'
+
+GM_registerMenuCommand('Clear all data', function() {
+    alert("This has not been implemented yet")
+}) // Third parameter is the access key
+
+GM_registerMenuCommand('Switch theme', function() {
+    alert("This is not working just yet")
+});
 
 console.log("The extension is up and running");
 
-var headings = document.querySelectorAll("h2,h3,h4")
+var headings = document.querySelectorAll(selection_range)
 
 for (const title of headings) {
-    //console.log(title.lastChild.textContent)
     var checkbox = document.createElement('input')
     checkbox.type = "checkbox"
     checkbox.id = "work_tracker"
     checkbox.style.display = 'block'
     checkbox.style.marginRight = '1.5em'
+    checkbox.style.accentColor = '#295414'
     checkbox.checked = JSON.parse(localStorage.getItem(data_key))[title.querySelector('a').textContent]
     checkbox.onclick = allCheckboxes
 
@@ -22,7 +45,7 @@ allCheckboxes() // Update ToC upon launch
 
 function allCheckboxes() {
     var boxes = document.querySelectorAll("#work_tracker")
-    
+
     // Fetch data from the storage or create it if nonexistant
     var fetched = JSON.parse(localStorage.getItem(data_key))
     if (fetched == null) {
@@ -43,12 +66,12 @@ function allCheckboxes() {
             const text = elemA.textContent
             const value = JSON.parse(localStorage.getItem(data_key))[text]
             if (value == true) {
-                elemA.style.color = '#2a5418ff'
-                //elemA.style.fontWeight = 'bold'
+                elemA.style.color = '#295414'
+                elemA.style.fontWeight = 470
             }
             else {
                 elemA.style.color = '#888'
-                //elemA.style.fontWeight = 'normal'
+                elemA.style.fontWeight = 'normal'
             }
         }
     }
