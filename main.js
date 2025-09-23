@@ -1,8 +1,9 @@
 // ==UserScript==
 // @name            CS-214 Prettifier
 // @name:fr         CS-214 Enjoliveur
-// @namespace       https://FocusedFaust.github.io
-// @version         2025-09-19
+// @name:de         CS-214 Verschönerer
+// @namespace       github@FocusedFaust
+// @version         2025-09-23
 // @description     Prettifier for the class website, to track your work
 // @description:fr  Enjoliveur pour le cours de CS-214, permet de suivre l'évolution de son travail
 // @description:de  Shit I should've listened to my german teachers
@@ -10,18 +11,18 @@
 // @match           *://cs-214.epfl.ch/*
 // @icon            https://cs-214.epfl.ch/favicon.png
 // @grant           GM_registerMenuCommand
+// @license         AGPL-3.0-or-later
+// @downloadURL https://update.greasyfork.org/scripts/550061/CS-214%20Prettifier.user.js
+// @updateURL https://update.greasyfork.org/scripts/550061/CS-214%20Prettifier.meta.js
 // ==/UserScript==
 
 const data_key = 'data'
 const selection_range = 'h2,h3,h4'
 
 GM_registerMenuCommand('Clear all data', function() {
-    alert("This has not been implemented yet")
+    localStorage.setItem(data_key, JSON.stringify({}))
+    allCheckboxes()
 }) // Third parameter is the access key
-
-GM_registerMenuCommand('Switch theme', function() {
-    alert("This is not working just yet")
-});
 
 console.log("The extension is up and running");
 
@@ -65,12 +66,13 @@ function allCheckboxes() {
         if (elemA != null && elemA.textContent in JSON.parse(localStorage.getItem(data_key))) {
             const text = elemA.textContent
             const value = JSON.parse(localStorage.getItem(data_key))[text]
+            const style = window.getComputedStyle(document.body).getPropertyValue('color-scheme')
             if (value == true) {
-                elemA.style.color = '#295414'
+                elemA.style.color = (style == 'light dark') ? '#7bb263' : '#295414'
                 elemA.style.fontWeight = 470
             }
             else {
-                elemA.style.color = '#888'
+                elemA.style.color = (style == 'light dark') ? '#c0c0c0' : '#888'
                 elemA.style.fontWeight = 'normal'
             }
         }
