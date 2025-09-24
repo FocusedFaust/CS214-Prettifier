@@ -9,7 +9,7 @@
 // @description:de  Shit I should've listened to my german teachers
 // @author          FocusedFaust
 // @match           *://cs-214.epfl.ch/*
-// @icon            https://cs-214.epfl.ch/favicon.png
+// @icon            https://github.com/FocusedFaust/CS214-Prettifier/blob/master/favicon_pwetty.png
 // @grant           GM_registerMenuCommand
 // @license         AGPL-3.0-or-later
 // @downloadURL https://update.greasyfork.org/scripts/550061/CS-214%20Prettifier.user.js
@@ -22,6 +22,7 @@ const selection_range = 'h2,h3,h4'
 GM_registerMenuCommand('Clear all data', function() {
     localStorage.setItem(data_key, JSON.stringify({}))
     allCheckboxes()
+    alert("If you still see things highlighted, it's because I'm not done coding it")
 }) // Third parameter is the access key
 
 console.log("The extension is up and running");
