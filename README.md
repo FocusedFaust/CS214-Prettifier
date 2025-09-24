@@ -10,7 +10,7 @@ Each title or subtitle gets a checkbox next to it. You can simply click it when 
 The data created (aka what is checked or not) will be saved locally between sessions, meaning you can reload the page and reopen it without losing your progess. I'm working on adding a button to clear all of that.
 
 ### Dark theme
-I was gonna do this, until I updated my browser and there was a dark theme. So tell me if it's specific to my browser and I'll add it.
+I was gonna do this, until [Sidonie Bouthors](https://github.com/SidonieBouthors) added it to the course website itself ^^ Thanks to them.
 
 ## Installation
 
