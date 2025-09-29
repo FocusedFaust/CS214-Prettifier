@@ -19,8 +19,9 @@ I was gonna do this, until [Sidonie Bouthors](https://github.com/SidonieBouthors
 For now, the script only works through the TamperMonkey extension. I'm working on making a bundle file to upload directly.
 
 1. Install [Tampermonkey](https://www.tampermonkey.net/) (it's not that difficult, trust)
-2. Head over to [the GreasyFork page](https://greasyfork.org/en/scripts/550061-cs-214-prettifier) andd click "Install"
-3. You should be done! Now you can go to the class website and make use of it ^^
+2. Head over to [the GreasyFork page](https://greasyfork.org/en/scripts/550061-cs-214-prettifier) andd click "`Install this script`"
+3. A TamperMonkey tab opens up, hit "`Install`" again
+4. You should be done! Now you can go to the class website and make use of it ^^
 
 ### Manual
 
