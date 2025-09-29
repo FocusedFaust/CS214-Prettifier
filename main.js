@@ -3,7 +3,7 @@
 // @name:fr         CS-214 Enjoliveur
 // @name:de         CS-214 Verschönerer
 // @namespace       github@FocusedFaust
-// @version         2025-09-23
+// @version         2025-09-29
 // @description     Prettifier for the class website, to track your work
 // @description:fr  Enjoliveur pour le cours de CS-214, permet de suivre l'évolution de son travail
 // @description:de  Shit I should've listened to my german teachers
@@ -21,9 +21,13 @@ const selection_range = 'h2,h3,h4'
 
 GM_registerMenuCommand('Clear all data', function() {
     localStorage.setItem(data_key, JSON.stringify({}))
+    var boxes = document.querySelectorAll("#work_tracker")
+    // Set data
+    for (const box of boxes) {
+        box.checked = false
+    }
     allCheckboxes()
-    alert("If you still see things highlighted, it's because I'm not done coding this button")
-}) // Third parameter is the access key (shortcut)
+}) // Third parameter is the access key
 
 console.log("The extension is up and running");
 
@@ -36,9 +40,14 @@ for (const title of headings) {
     checkbox.style.display = 'block'
     checkbox.style.marginRight = '1.5em'
     checkbox.style.accentColor = '#295414'
-    checkbox.checked = JSON.parse(localStorage.getItem(data_key))[title.querySelector('a').textContent]
-    checkbox.onclick = allCheckboxes
-
+    var fetched = JSON.parse(localStorage.getItem(data_key))
+    if (fetched != null) {
+        checkbox.checked = fetched[title.querySelector('a').textContent]
+        checkbox.onclick = allCheckboxes
+    } else {
+        fetched = {}
+        localStorage.setItem(data_key, JSON.stringify(fetched))
+    }
     title.style.display = 'flex'
     title.insertBefore(checkbox, title.firstChild)
 }
@@ -54,10 +63,9 @@ function allCheckboxes() {
         localStorage.setItem(data_key, JSON.stringify({}))
         fetched = JSON.parse(localStorage.getItem(data_key))
     }
-
     // Set data
     for (const box of boxes) {
-        fetched[box.parentElement.querySelector('a').textContent] = box.checked // Very spaghetti but it works
+        fetched[box.parentElement.querySelector('a').textContent] = box.checked
         localStorage.setItem(data_key, JSON.stringify(fetched))
     }
 
